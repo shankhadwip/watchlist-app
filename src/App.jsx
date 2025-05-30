@@ -2,6 +2,8 @@ import Movies from "./components/Movies";
 import Navbar from "./components/Navbar";
 import WatchList from "./components/WatchList";
 import Banner from "./components/Banner";
+import Search from "./components/Search";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -28,7 +30,6 @@ function App() {
       setWatchlist(watchlistData);
     }
   }, []);
-  
 
   return (
     <>
@@ -43,8 +44,19 @@ function App() {
                 <Movies
                   watchlist={watchlist}
                   addToWatchlist={addToWatchlist}
-                  removeFromWatchlist={removeFromWatchlist}/>
+                  removeFromWatchlist={removeFromWatchlist}
+                />
               </>
+            }
+          />
+          <Route
+            path="/search"
+            element={
+              <Search
+                watchlist={watchlist}
+                addToWatchlist={addToWatchlist}
+                removeFromWatchlist={removeFromWatchlist}
+              />
             }
           />
           <Route
