@@ -16,7 +16,7 @@ if (!query.trim()) return;
 
 const response = await fetch(
 
-  https://api.themoviedb.org/3/search/movie?api_key=511e2c878d9e6969cfd4129fd142f874&query=${query}
+  `https://api.themoviedb.org/3/search/movie?api_key=511e2c878d9e6969cfd4129fd142f874&query=${query}`
 
 );
 
