@@ -1,0 +1,59 @@
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import MovieCard from "./MovieCard";
+
+function Search({ addToWatchlist, removeFromWatchlist, watchlist }) {
+  const location = useLocation();
+  const query = new URLSearchParams(location.search).get("q") || "";
+  const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    if (!query.trim()) return;
+
+    const fetchResults = async () => {
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/search/movie?api_key=511e2c878d9e6969cfd4129fd142f874&query=${encodeURIComponent(query)}`
+        );
+        const data = await response.json();
+
+        const filteredResults = (data.results || []).filter(
+          (movie) => movie.poster_path
+        );
+        setSearchResults(filteredResults);
+        localStorage.setItem("lastSearchResults", JSON.stringify(filteredResults));
+      } catch (error) {
+        console.error("Search failed:", error);
+      }
+    };
+
+    fetchResults();
+  }, [query]);
+
+  return (
+    <div className="p-4">
+      {/* Results */}
+      <div className="flex flex-wrap gap-6 justify-center mt-20 mb-6">
+        {searchResults.length > 0 ? (
+          searchResults.map((movie) => (
+            <MovieCard
+              key={movie.id}
+              poster_path={movie.poster_path}
+              title={movie.title}
+              addToWatchlist={addToWatchlist}
+              removeFromWatchlist={removeFromWatchlist}
+              watchlist={watchlist}
+              movieObj={movie}
+            />
+          ))
+        ) : (
+          <p className="text-white col-span-full text-center mt-10">
+            {query ? "No results found." : "No query provided."}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default Search;
