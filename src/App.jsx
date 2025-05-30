@@ -49,16 +49,7 @@ function App() {
               </>
             }
           />
-          <Route
-            path="/search"
-            element={
-              <Search
-                watchlist={watchlist}
-                addToWatchlist={addToWatchlist}
-                removeFromWatchlist={removeFromWatchlist}
-              />
-            }
-          />
+       
           <Route
             path="/WatchList"
             element={
@@ -68,6 +59,16 @@ function App() {
                   removeFromWatchlist={removeFromWatchlist}
                 />
               </>
+            }
+          />
+             <Route
+            path="/search"
+            element={
+              <Search
+                watchlist={watchlist}
+                addToWatchlist={addToWatchlist}
+                removeFromWatchlist={removeFromWatchlist}
+              />
             }
           />
         </Routes>
