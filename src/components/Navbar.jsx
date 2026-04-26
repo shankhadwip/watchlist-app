@@ -93,7 +93,7 @@ function Navbar({ user, authLoading }) {
 
   return (
     <nav className="fixed top-0 left-0 z-50 w-full bg-gradient-to-b from-black via-gray-900 to-gray-800 text-white shadow-md">
-      <div className="flex min-h-[60px] flex-wrap items-center gap-x-2 gap-y-2 px-3 py-2 sm:flex-nowrap sm:gap-3 md:gap-8 md:px-6">
+      <div className="flex min-h-[60px] flex-wrap items-center gap-x-2 gap-y-2 overflow-x-hidden px-3 py-2 sm:flex-nowrap sm:gap-3 md:gap-8 md:px-6">
       {/* Logo with Background */}
       <div className="shrink-0 bg-yellow-300 p-1 rounded">
         <Link to="/" className="hover:cursor-pointer">
@@ -129,11 +129,11 @@ function Navbar({ user, authLoading }) {
           onChange={(e) => setSearchTerm(e.target.value)}
           onFocus={() => setShowSuggestions(suggestions.length > 0)}
           onKeyDown={handleSearchKeyDown}
-          className="min-w-0 flex-1 rounded bg-white px-3 py-2 text-sm text-black transition duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 sm:w-[180px] sm:flex-none sm:py-1 lg:w-[250px]"
+          className="min-w-0 flex-1 rounded bg-white px-3 py-2 text-base text-black transition duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 sm:w-[180px] sm:flex-none sm:py-1 sm:text-sm lg:w-[250px]"
         />
         <button
           onClick={handleSearch}
-          className="rounded bg-yellow-300 px-3 py-2 text-sm font-semibold text-black hover:cursor-pointer sm:px-4 sm:py-1"
+          className="shrink-0 rounded bg-yellow-300 px-3 py-2 text-base font-semibold text-black hover:cursor-pointer sm:px-4 sm:py-1 sm:text-sm"
         >
           Search
         </button>
