@@ -1,14 +1,22 @@
 import { useEffect, useState } from "react";
 import BannerImage from "../BannerImg.jpg";
+import { isTmdbConfigured, tmdbUrl } from "../tmdb";
 
 function Banner({ watchlist, addToWatchlist }) {
   const [topShow, setTopShow] = useState(null);
   const featuredShow = topShow;
+  const fallbackShow = {
+    id: "fallback-banner",
+    media_type: "movie",
+    title: "Interstellar",
+    overview: "Mankind's next step will be our greatest.",
+    backdropUrl: BannerImage,
+  };
   const isInWatchlist = featuredShow
     ? watchlist.some(
-    (item) =>
-      item.id === featuredShow.id &&
-      (item.media_type || "movie") === (featuredShow.media_type || "movie")
+        (item) =>
+          item.id === featuredShow.id &&
+          (item.media_type || "movie") === (featuredShow.media_type || "movie")
       )
     : false;
 
@@ -20,10 +28,13 @@ function Banner({ watchlist, addToWatchlist }) {
 
   useEffect(() => {
     const fetchTopShowToday = async () => {
+      if (!isTmdbConfigured) {
+        setTopShow(fallbackShow);
+        return;
+      }
+
       try {
-        const response = await fetch(
-          "https://api.themoviedb.org/3/trending/tv/day?api_key=511e2c878d9e6969cfd4129fd142f874"
-        );
+        const response = await fetch(tmdbUrl("/trending/tv/day"));
         const data = await response.json();
         const showWithBackdrop = (data.results || []).find(
           (show) => show.backdrop_path
@@ -34,13 +45,7 @@ function Banner({ watchlist, addToWatchlist }) {
         );
       } catch (error) {
         console.error("Top show failed to load:", error);
-        setTopShow({
-          id: "fallback-banner",
-          media_type: "movie",
-          title: "Interstellar",
-          overview: "Mankind's next step will be our greatest.",
-          backdropUrl: BannerImage,
-        });
+        setTopShow(fallbackShow);
       }
     };
 
@@ -48,7 +53,7 @@ function Banner({ watchlist, addToWatchlist }) {
   }, []);
 
   return (
-    <div className="relative mt-[108px] h-[44vh] min-h-[320px] w-full overflow-hidden bg-black shadow-md sm:mt-[60px] sm:h-[56vh] lg:h-[70vh]">
+    <div className="relative mt-[96px] h-[44vh] min-h-[320px] w-full overflow-hidden bg-black shadow-md sm:mt-[60px] sm:h-[56vh] lg:h-[70vh]">
       {featuredShow && (
         <img
           src={getBackdropUrl(featuredShow)}

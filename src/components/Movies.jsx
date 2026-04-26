@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import axios from "axios";
 import Pagination from "./Pagination";
+import { isTmdbConfigured, tmdbUrl } from "../tmdb";
 
 function Movies({addToWatchlist, removeFromWatchlist, watchlist}) {
   const [movies, setMovies] = useState([]);
@@ -10,10 +11,13 @@ function Movies({addToWatchlist, removeFromWatchlist, watchlist}) {
   
   
   useEffect(() => {
+    if (!isTmdbConfigured) {
+      setMovies([]);
+      return;
+    }
+
     axios
-      .get(
-        `https://api.themoviedb.org/3/trending/all/day?api_key=511e2c878d9e6969cfd4129fd142f874&page=${currentPage}`
-      )
+      .get(tmdbUrl("/trending/all/day", { page: currentPage }))
       .then((res) => {
         setMovies(
           (res.data.results || []).filter(

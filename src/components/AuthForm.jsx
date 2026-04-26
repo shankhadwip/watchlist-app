@@ -13,7 +13,13 @@ const authErrors = {
     "Firebase Authentication is not enabled for this project yet.",
   "auth/invalid-credential": "The email or password is incorrect.",
   "auth/invalid-email": "Please enter a valid email address.",
+  "auth/invalid-api-key":
+    "Firebase API key is invalid. Check your Netlify environment variables.",
+  "auth/operation-not-allowed":
+    "This sign-in method is not enabled in Firebase Authentication.",
   "auth/popup-closed-by-user": "Google sign-in was closed before finishing.",
+  "auth/unauthorized-domain":
+    "This domain is not authorized in Firebase Authentication settings.",
   "auth/weak-password": "Password should be at least 6 characters.",
 };
 

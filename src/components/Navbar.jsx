@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
+import { isTmdbConfigured, tmdbUrl } from "../tmdb";
 
 function Navbar({ user, authLoading }) {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ function Navbar({ user, authLoading }) {
   useEffect(() => {
     const query = searchTerm.trim();
 
-    if (query.length < 2) {
+    if (query.length < 2 || !isTmdbConfigured) {
       setSuggestions([]);
       return undefined;
     }
@@ -56,7 +57,7 @@ function Navbar({ user, authLoading }) {
     const timeoutId = setTimeout(async () => {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/search/movie?api_key=511e2c878d9e6969cfd4129fd142f874&query=${encodeURIComponent(query)}`,
+          tmdbUrl("/search/movie", { query }),
           { signal: controller.signal }
         );
         const data = await response.json();
