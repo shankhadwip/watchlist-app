@@ -92,8 +92,8 @@ function Navbar({ user, authLoading }) {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-gradient-to-b from-black via-gray-900 to-gray-800 text-white shadow-md">
-      <div className="flex min-h-[60px] flex-wrap items-center gap-3 px-3 py-2 sm:flex-nowrap md:gap-8 md:px-6">
+    <nav className="fixed top-0 left-0 z-50 w-full bg-gradient-to-b from-black via-gray-900 to-gray-800 text-white shadow-md">
+      <div className="flex min-h-[60px] flex-wrap items-center gap-x-2 gap-y-2 px-3 py-2 sm:flex-nowrap sm:gap-3 md:gap-8 md:px-6">
       {/* Logo with Background */}
       <div className="shrink-0 bg-yellow-300 p-1 rounded">
         <Link to="/" className="hover:cursor-pointer">
@@ -105,22 +105,22 @@ function Navbar({ user, authLoading }) {
       {/* Navigation Links */}
       <Link
         to="/"
-        className="text-base md:text-xl font-semibold leading-none hover:text-red-500 transition"
+        className="text-sm font-semibold leading-none transition hover:text-red-500 sm:text-base md:text-xl"
       >
         Home
       </Link>
       <Link
         to="/WatchList"
-        className="text-base md:text-xl font-semibold leading-none hover:text-red-500 transition"
+        className="text-sm font-semibold leading-none transition hover:text-red-500 sm:text-base md:text-xl"
       >
         Watchlist
       </Link>
-      <div className="flex-grow" />
+      <div className="hidden flex-grow sm:block" />
 
       {/* Search input + button */}
       <div
         ref={searchBoxRef}
-        className="relative order-last flex w-full gap-2 sm:order-none sm:w-auto"
+        className="relative order-last flex min-w-0 basis-full gap-2 sm:order-none sm:w-auto sm:basis-auto"
       >
         <input
           type="text"
@@ -138,7 +138,7 @@ function Navbar({ user, authLoading }) {
           Search
         </button>
         {showSuggestions && (
-          <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-50 overflow-hidden rounded-md bg-white text-black shadow-xl sm:right-auto sm:w-[320px]">
+          <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-50 max-h-[60vh] overflow-y-auto rounded-md bg-white text-black shadow-xl sm:right-auto sm:w-[320px]">
             {suggestions.map((movie) => (
               <button
                 key={movie.id}
@@ -151,7 +151,7 @@ function Navbar({ user, authLoading }) {
                   alt=""
                   className="h-14 w-10 rounded object-cover"
                 />
-                <span className="min-w-0">
+                <span className="min-w-0 flex-1">
                   <span className="block truncate text-sm font-semibold">
                     {movie.title}
                   </span>
@@ -168,28 +168,31 @@ function Navbar({ user, authLoading }) {
       </div>
       {!authLoading &&
         (user ? (
-          <div className="flex items-center gap-3">
+          <div className="ml-auto flex items-center gap-2 sm:gap-3">
             <span className="hidden max-w-[170px] truncate text-sm text-gray-200 lg:inline">
               {user.email || "Signed in"}
             </span>
             <button
               onClick={handleLogout}
-              className="rounded bg-red-500 px-3 py-1 text-sm font-semibold text-white hover:cursor-pointer hover:bg-red-600"
+              className="rounded bg-red-500 px-2 py-1 text-xs font-semibold text-white hover:cursor-pointer hover:bg-red-600 sm:px-3 sm:text-sm"
             >
               Logout
             </button>
           </div>
         ) : (
-          <div className="flex items-center gap-2">
+          <div className="ml-auto flex items-center gap-2">
+            <span className="rounded bg-white/10 px-2 py-1 text-xs font-semibold text-white/80 sm:text-sm">
+              Guest
+            </span>
             <Link
               to="/login"
-              className="rounded border border-yellow-300 px-3 py-1 text-sm font-semibold text-yellow-200 hover:cursor-pointer hover:bg-yellow-300 hover:text-black"
+              className="rounded border border-yellow-300 px-2 py-1 text-xs font-semibold text-yellow-200 hover:cursor-pointer hover:bg-yellow-300 hover:text-black sm:px-3 sm:text-sm"
             >
               Login
             </Link>
             <Link
               to="/signup"
-              className="rounded bg-yellow-300 px-3 py-1 text-sm font-semibold text-black hover:cursor-pointer hover:bg-yellow-200"
+              className="rounded bg-yellow-300 px-2 py-1 text-xs font-semibold text-black hover:cursor-pointer hover:bg-yellow-200 sm:px-3 sm:text-sm"
             >
               Sign up
             </Link>

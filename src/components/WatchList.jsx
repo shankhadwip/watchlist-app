@@ -20,7 +20,7 @@ function WatchList({ watchlist, removeFromWatchlist }) {
   }, [watchlist]);
 
   return (
-    <div className="mt-[108px] min-h-screen bg-gray-200 px-3 py-5 sm:mt-[60px] sm:px-5 sm:py-6">
+    <div className="mt-[96px] min-h-screen bg-gray-200 px-3 py-5 sm:mt-[60px] sm:px-5 sm:py-6">
       {/* Flex container to separate title and controls */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         {/* Title aligned to the left */}

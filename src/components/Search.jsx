@@ -30,9 +30,9 @@ function Search({ addToWatchlist, removeFromWatchlist, watchlist }) {
   }, [query]);
 
   return (
-    <div className="p-4">
+    <div className="min-h-screen overflow-x-hidden bg-gray-300 px-3 pt-[112px] sm:px-4 sm:pt-[84px]">
       {/* Results */}
-      <div className="mt-24 grid grid-cols-2 gap-3 px-3 pb-6 sm:grid-cols-3 sm:gap-5 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+      <div className="grid grid-cols-2 gap-3 pb-6 sm:grid-cols-3 sm:gap-5 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {searchResults.length > 0 ? (
           searchResults.map((movie) => (
             <MovieCard

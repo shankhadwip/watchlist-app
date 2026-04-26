@@ -4,7 +4,6 @@ import WatchList from "./components/WatchList";
 import Banner from "./components/Banner";
 import Search from "./components/Search";
 import AuthForm from "./components/AuthForm";
-import ProtectedRoute from "./components/ProtectedRoute";
 import { auth } from "./firebase";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -86,12 +85,10 @@ function App() {
           <Route
             path="/WatchList"
             element={
-              <ProtectedRoute user={user} authLoading={authLoading}>
-                <WatchList
-                  watchlist={watchlist}
-                  removeFromWatchlist={removeFromWatchlist}
-                />
-              </ProtectedRoute>
+              <WatchList
+                watchlist={watchlist}
+                removeFromWatchlist={removeFromWatchlist}
+              />
             }
           />
           <Route
