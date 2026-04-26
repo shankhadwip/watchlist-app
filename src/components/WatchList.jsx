@@ -35,8 +35,8 @@ function WatchList({ watchlist, removeFromWatchlist }) {
           <input
             onChange={handleSearch}
             type="text"
-            placeholder="Search movies..."
-            className="px-3 py-2 border rounded-md bg-white italic text-black focus:outline-none focus:ring-2 focus:ring-gray-800 placeholder:text-xs"
+            placeholder="Search movies from your watchlist..."
+            className="px-3 py-2 w-[250px] border rounded-md bg-white italic text-black focus:outline-none focus:ring-2 focus:ring-gray-800 placeholder:text-xs"
           />
         </div>
         
