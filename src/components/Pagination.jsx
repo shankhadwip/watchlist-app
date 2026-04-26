@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 function Pagination({ currentPage, onPageChange, totalPages}) {
   const [inputPage, setInputPage] = useState("");
@@ -23,11 +23,11 @@ function Pagination({ currentPage, onPageChange, totalPages}) {
   };
 
   return (
-    <div className="flex flex-col items-center gap-3 py-4">
-      <div className="flex gap-6">
+    <div className="flex flex-col items-center gap-3 px-3 py-4">
+      <div className="grid w-full max-w-xl grid-cols-[1fr_auto_1fr] gap-2 sm:flex sm:w-auto sm:gap-6">
         {/* Prev Button */}
         <button
-          className="px-4 py-2 bg-blue-500 text-white shadow-md font-bold rounded-md hover:cursor-pointer hover:bg-blue-700 disabled:opacity-50"
+          className="rounded-md bg-blue-500 px-4 py-2 font-bold text-white shadow-md hover:cursor-pointer hover:bg-blue-700 disabled:opacity-50"
           disabled={currentPage === 1}
           onClick={() => onPageChange(currentPage - 1)}
         >
@@ -35,13 +35,13 @@ function Pagination({ currentPage, onPageChange, totalPages}) {
         </button>
 
         {/* Current Page Indicator */}
-        <span className="px-4 py-2 bg-gray-700 text-white shadow-md rounded-md">
+        <span className="rounded-md bg-gray-700 px-4 py-2 text-center text-white shadow-md">
           {currentPage}
         </span>
 
         {/* Next Button */}
         <button
-          className="px-4 py-2 bg-blue-500 text-white font-bold shadow-md rounded-md hover:cursor-pointer hover:bg-blue-700 disabled:opacity-50"
+          className="rounded-md bg-blue-500 px-4 py-2 font-bold text-white shadow-md hover:cursor-pointer hover:bg-blue-700 disabled:opacity-50"
           disabled={currentPage === totalPages}
           onClick={() => onPageChange(currentPage + 1)}
         >
@@ -52,10 +52,10 @@ function Pagination({ currentPage, onPageChange, totalPages}) {
           value={inputPage}
           onChange={handlePageInput}
           placeholder="Enter page no."
-          className="px-3 py-2 border rounded-md bg-white italic text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="col-span-2 rounded-md border bg-white px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:w-[170px]"
         />
         <button
-          className="px-4 py-2 bg-yellow-300 text-black font-bold shadow-md rounded-md hover:cursor-pointer hover:bg-gray-700 hover:text-white"
+          className="rounded-md bg-yellow-300 px-4 py-2 font-bold text-black shadow-md hover:cursor-pointer hover:bg-gray-700 hover:text-white"
           onClick={goToPage}
         >
           Go

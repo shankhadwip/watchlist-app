@@ -21,8 +21,6 @@ const genreMapping = {
     10768: "War & Politics",
     10766: "Soap",
     10767: "Talk",
-    10768: "Reality",
-    10770: "News",
     10771: "Documentary",
     10772: "History",
     10773: "Kids",

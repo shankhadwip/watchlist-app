@@ -33,7 +33,7 @@ function Search({ addToWatchlist, removeFromWatchlist, watchlist }) {
   return (
     <div className="p-4">
       {/* Results */}
-      <div className="flex flex-wrap gap-6 justify-center mt-20 mb-6">
+      <div className="mt-24 grid grid-cols-2 gap-3 px-3 pb-6 sm:grid-cols-3 sm:gap-5 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {searchResults.length > 0 ? (
           searchResults.map((movie) => (
             <MovieCard
